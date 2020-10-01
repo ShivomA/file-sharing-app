@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/Bootstrap/css/bootstrap.min.css">
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+
+    <body>
+        {% if error != "" %}
+        <div class="mt-1 alert alert-danger" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}        
+        {% if info != "" %}
+        <div class="mt-1 alert alert-primary" role="alert">
+            {{ info }}
+        </div>
+        {% endif %}
+        
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+
+        <script src="/static/jquery.min.js"></script>
+        <script src="/static/Bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    </body>
+</html>

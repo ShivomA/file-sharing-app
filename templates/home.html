@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div class="card mt-5">
+
+        <div id = "userinfo" class="row mt-3 mb-5">
+            <div class="col-sm ml-2"> 
+                <a href="/"><h2>File Share</h2></a> 
+            </div>  
+              
+            <div class="col-sm text-center mt-1">
+                <h3>{{ name }}</h3> 
+            </div> 
+              
+            <div class="col-sm text-right mr-2">
+                <form action="/logout"><button type="submit" class="btn btn-danger btn-sm mt-2">Log out</button></form>
+            </div> 
+        </div>
+        
+        <div id = "upload" class=" row ml-2 mr-2 mb-2">
+            <div class="col-sm mt-2">
+                <h5>Uploaded files</h5> 
+            </div>
+            <div class="col-sm text-right">
+                <form method=post action="/updateData" enctype="multipart/form-data">
+                    <input class="btn btn-primary btn-sm" type="file" name="file" value="Choose file">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="filesinfo" class="card mt-4 mb-2 ml-1 mr-1">
+            <table class="table table-sm">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col" style="width: 40%;">File Name</th>
+                        <th scope="col" style="width: 15%;">Size</th>
+                        <th scope="col" style="width: 15%;">Uploaded On</th>
+                        <th scope="col" style="width: 10%;">&nbsp;</th>
+                        <th scope="col" style="width: 10%;">&nbsp;</th>
+                        <th scope="col" style="width: 10%;">&nbsp;</th>
+                    </tr>
+                </thead>
+                <div id="files">               
+                    {% for files in filesInfo %}
+                    <tbody>
+                        <tr>
+                            <td class="align-middle">{{ files.0 }}</td>
+                            <td class="align-middle">{{ files.1 }}</td>
+                            <td class="align-middle">{{ files.2 }}</td>
+                            <td><form method="post" action="/show/{{ files.3}}">
+                                <button type="submit" class="btn btn-info btn-sm mt-3">Show</button>
+                            </form></td>
+                            <td><form method="post" action="/updateData">
+                                <button type="submit" name="share" value= {{ files.3}} class="btn btn-success btn-sm mt-3">Share</button>
+                            </form></td>
+                            <td><form method="post" action="/updateData">
+                                <button type="submit" name="delete" value= {{ files.3}} class="btn btn-danger btn-sm mt-3">Delete</button>
+                            </form></td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </div>
+            </table>
+        </div>
+
+        {% include 'partials/uploadModal.html' %}
+
+    </div>
+{% endblock %}

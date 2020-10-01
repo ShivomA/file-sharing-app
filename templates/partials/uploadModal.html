@@ -1,0 +1,28 @@
+<!-- Button >
+<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadModal">
+    Upload File
+</button -->
+
+<!-- Modal -->
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload New File</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span>&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                Click below to upload new file or drag and drop the file in the container below
+                
+                <form method=post action="/updateData" enctype="multipart/form-data" class="mt-4">
+                    <input class="btn btn-primary btn-sm" type="file" name="file" value="Choose file">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div>
