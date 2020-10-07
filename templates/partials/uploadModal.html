@@ -1,26 +1,40 @@
-<!-- Button >
-<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#uploadModal">
-    Upload File
-</button -->
+{% block style %}
+<style>
+    #drop-files {
+        width: 750px;
+        height: 300px;
+        background: rgba(0,0,0,0.1);
+        border-radius: 10px;
+        border: 4px dashed rgba(0,0,0,0.2);
+        padding: 225px 0 0 10px;
+        text-align: center;
+        font-size: 1.5em;
+        margin: 0 20px 20px 0;
+    }
+</style>
+{% endblock %}
 
-<!-- Modal -->
-<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+
+<div id="uploadModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Upload New File</h5>
+                <h4 class="modal-title">Upload New File</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span>&times;</span>
                 </button>
             </div>
-            
             <div class="modal-body">
-                Click below to upload new file or drag and drop the file in the container below
+                {{ files }}
+                <h5>Click below to upload new file or drag and drop the file in the container below.</h5>
                 
                 <form method=post action="/updateData" enctype="multipart/form-data" class="mt-4">
-                    <input class="btn btn-primary btn-sm" type="file" name="file" value="Choose file">
-                    <button type="submit" class="btn btn-success">Upload</button>
+                    <div class="text-center">
+                        <input id="drop-files" type="file" name="file" value="Choose file">
+                        <button type="submit" class="btn btn-success btn-lg">Upload</button>
+                    </div>
                 </form>
+                
             </div>
             
         </div>
